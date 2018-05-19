@@ -5,7 +5,8 @@ using System.Text;
 
 namespace VSRapp
 {
-    public class Xnor : PortFactory
+    public class NodeFactory
     {
+        private Dictionary<string, Node> nodes_ = new Dictionary<string, Node>();
     }
 }

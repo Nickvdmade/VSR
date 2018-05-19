@@ -54,19 +54,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Ports\PortFactory.cs" />
-    <Compile Include="Ports\Xnor.cs" />
-    <Compile Include="Ports\Xor.cs" />
+    <Compile Include="Circuit\Cuircit.cs" />
+    <Compile Include="Circuit\Node.cs" />
+    <Compile Include="Circuit\NodeFactory.cs" />
+    <Compile Include="Nodes\Xnor.cs" />
+    <Compile Include="Nodes\Xor.cs" />
+    <Compile Include="Saving\Save.cs" />
+    <Compile Include="Saving\SaveFactory.cs" />
+    <Compile Include="Saving\SaveToText.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Ports\InputHigh.cs" />
-    <Compile Include="Ports\InputLow.cs" />
-    <Compile Include="Ports\Nand.cs" />
-    <Compile Include="Ports\Nor.cs" />
-    <Compile Include="Ports\Not.cs" />
-    <Compile Include="Ports\And.cs" />
+    <Compile Include="Nodes\InputHigh.cs" />
+    <Compile Include="Nodes\InputLow.cs" />
+    <Compile Include="Nodes\Nand.cs" />
+    <Compile Include="Nodes\Nor.cs" />
+    <Compile Include="Nodes\Not.cs" />
+    <Compile Include="Nodes\And.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -77,8 +82,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ports\Or.cs" />
-    <Compile Include="Ports\Probe.cs" />
+    <Compile Include="Nodes\Or.cs" />
+    <Compile Include="Nodes\Probe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

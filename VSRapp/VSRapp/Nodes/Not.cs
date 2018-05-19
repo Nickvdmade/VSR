@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VSRapp
 {
-    public abstract class PortFactory
+    public class Not : Node
     {
     }
 }

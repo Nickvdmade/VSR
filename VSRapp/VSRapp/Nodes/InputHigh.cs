@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VSRapp
 {
-    public class Nand : PortFactory
+    public class InputHigh : Node
     {
     }
 }

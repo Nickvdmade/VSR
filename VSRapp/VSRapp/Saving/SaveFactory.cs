@@ -5,7 +5,8 @@ using System.Text;
 
 namespace VSRapp
 {
-    public class Xor : PortFactory
+    public class SaveFactory
     {
+        private Dictionary<string, Save> saveTypes_ = new Dictionary<string, Save>();
     }
 }

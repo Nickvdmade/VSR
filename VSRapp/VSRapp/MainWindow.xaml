@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VSRapp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Logical circuit creator" Width="1280" Height="960">
     <Grid>
-        
+        <DockPanel LastChildFill="True">
+            <ToolBarTray DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                <ToolBar>
+                    <Button x:Name="New" Content="New"/>
+                    <Button x:Name="Save" Content="Save"/>
+                </ToolBar>
+                <ToolBar>
+                    <Button x:Name="AddConnection" Content="Add connection"/>
+                </ToolBar>
+            </ToolBarTray>
+            <ListBox x:Name="ListBox" DockPanel.Dock="Left" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+            <Canvas DockPanel.Dock="Right" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        </DockPanel>
     </Grid>
 </Window>

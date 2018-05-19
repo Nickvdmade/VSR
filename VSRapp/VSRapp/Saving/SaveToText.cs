@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VSRapp
 {
-    public class And : PortFactory
+    public class SaveToText : Save
     {
     }
 }
