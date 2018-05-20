@@ -105,10 +105,26 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Diagrammen\VSRdiagram1.cd" />
+    <None Include="Diagrams\VSRdiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Nodes\Images\NOR.jpg" />
+    <Resource Include="Nodes\Images\OR.jpg" />
+    <Resource Include="Nodes\Images\XNOR.jpg" />
+    <Resource Include="Nodes\Images\XOR.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Nodes\Images\AND.jpg" />
+    <Resource Include="Nodes\Images\NAND.jpg" />
+    <Resource Include="Nodes\Images\NOT.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Nodes\Images\INPUT_HIGH.jpg" />
+    <Resource Include="Nodes\Images\INPUT_LOW.jpg" />
+    <Resource Include="Nodes\Images\PROBE.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
