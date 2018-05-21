@@ -15,10 +15,17 @@
                 </ToolBar>
                 <ToolBar>
                     <Button x:Name="AddConnection" Content="Add connection"/>
+                    <Button x:Name="RemoveConnection" Content="Remove connection"/>
                 </ToolBar>
             </ToolBarTray>
-            <ListBox x:Name="ListBox" DockPanel.Dock="Left" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-            <Canvas DockPanel.Dock="Right" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+            <DockPanel DockPanel.Dock="Left" LastChildFill="True">
+                <Button x:Name="AddNode" DockPanel.Dock="Top" VerticalAlignment="Bottom" Content="Add node" IsEnabled="False"/>
+                <ListBox x:Name="ListBox" VerticalAlignment="Stretch" Width="250"/>
+            </DockPanel>
+            <Canvas DockPanel.Dock="Right" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Image Name="OrGate" Margin="26,88,0,0" Source="Nodes/Images/OR.jpg"/>
+                <Image Name="AndGate" Margin="88,26,0,0" Source="Nodes/Images/AND.jpg"/>
+            </Canvas>
         </DockPanel>
     </Grid>
 </Window>

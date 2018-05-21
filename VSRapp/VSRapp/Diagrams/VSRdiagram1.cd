@@ -71,7 +71,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="VSRapp.Node">
-    <Position X="6.5" Y="3.5" Width="1.5" />
+    <Position X="6.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Circuit\Node.cs</FileName>
@@ -88,12 +88,12 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="VSRapp.NodeFactory">
-    <Position X="9.25" Y="2.25" Width="1.5" />
+    <Position X="9.25" Y="2.75" Width="1.5" />
     <AssociationLine Name="nodes_" Type="VSRapp.Node" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="10" Y="3.118" />
-        <Point X="10" Y="4" />
-        <Point X="8" Y="4" />
+        <Point X="10" Y="3.618" />
+        <Point X="10" Y="4.25" />
+        <Point X="8" Y="4.25" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
