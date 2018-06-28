@@ -1,11 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace VSRapp
+﻿namespace VSRapp
 {
     public class Xor : Node
     {
+        public Xor()
+        {
+        }
+
+        public override string getKey()
+        {
+            return "Xor";
+        }
+
+        public override object Clone()
+        {
+            return new Xor();
+        }
     }
 }

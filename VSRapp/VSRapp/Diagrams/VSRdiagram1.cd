@@ -1,81 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="VSRapp.And">
+  <Class Name="VSRapp.And" Collapsed="true">
     <Position X="6.5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\And.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VSRapp.Or">
+  <Class Name="VSRapp.Or" Collapsed="true">
     <Position X="6.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\Or.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VSRapp.InputHigh">
+  <Class Name="VSRapp.InputHigh" Collapsed="true">
     <Position X="3" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\InputHigh.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VSRapp.InputLow">
+  <Class Name="VSRapp.InputLow" Collapsed="true">
     <Position X="3" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\InputLow.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VSRapp.Probe">
+  <Class Name="VSRapp.Probe" Collapsed="true">
     <Position X="4.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\Probe.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VSRapp.Not">
+  <Class Name="VSRapp.Not" Collapsed="true">
     <Position X="4.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\Not.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VSRapp.Nand">
+  <Class Name="VSRapp.Nand" Collapsed="true">
     <Position X="8.25" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\Nand.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VSRapp.Nor">
+  <Class Name="VSRapp.Nor" Collapsed="true">
     <Position X="10" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\Nor.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VSRapp.Xor">
+  <Class Name="VSRapp.Xor" Collapsed="true">
     <Position X="8.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\Xor.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VSRapp.Xnor">
+  <Class Name="VSRapp.Xnor" Collapsed="true">
     <Position X="10" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\Xnor.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VSRapp.Node">
+  <Class Name="VSRapp.Node" Collapsed="true">
     <Position X="6.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAABAAAAAABA=</HashCode>
       <FileName>Circuit\Node.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="VSRapp.Cuircit">
     <Position X="6.5" Y="1.5" Width="1.5" />
@@ -87,46 +88,27 @@
       <Field Name="nodes_" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="VSRapp.NodeFactory">
-    <Position X="9.25" Y="2.75" Width="1.5" />
-    <AssociationLine Name="nodes_" Type="VSRapp.Node" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="10" Y="3.618" />
-        <Point X="10" Y="4.25" />
-        <Point X="8" Y="4.25" />
-      </Path>
-    </AssociationLine>
+  <Class Name="VSRapp.FactoryMethod&lt;TKey, TObject&gt;">
+    <Position X="3.5" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
-      <FileName>Circuit\NodeFactory.cs</FileName>
+      <HashCode>AAgAAAAAAAEAAAAAAAEQAAgAAABIAAAAAABAAAAAAAQ=</HashCode>
+      <FileName>Circuit\FactoryMethod.cs</FileName>
     </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Field Name="nodes_" />
-    </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="VSRapp.SaveToText">
+  <Class Name="VSRapp.SaveToText" Collapsed="true">
     <Position X="0.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Saving\SaveToText.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VSRapp.Save">
+  <Class Name="VSRapp.Save" Collapsed="true">
     <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAABAAAAAABA=</HashCode>
       <FileName>Saving\Save.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="VSRapp.SaveFactory">
-    <Position X="3.5" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
-      <FileName>Saving\SaveFactory.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Field Name="saveTypes_" />
-    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

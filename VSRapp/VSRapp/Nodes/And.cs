@@ -1,11 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace VSRapp
+﻿namespace VSRapp
 {
     public class And : Node
     {
+        public And()
+        {
+        }
+
+        public override string getKey()
+        {
+            return "And";
+        }
+
+        public override object Clone()
+        {
+            return new And();
+        }
     }
 }

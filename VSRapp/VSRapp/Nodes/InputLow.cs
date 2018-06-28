@@ -1,11 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace VSRapp
+﻿namespace VSRapp
 {
     public class InputLow : Node
     {
+        public InputLow()
+        {
+        }
+
+        public override string getKey()
+        {
+            return "InputLow";
+        }
+
+        public override object Clone()
+        {
+            return new InputLow();
+        }
     }
 }

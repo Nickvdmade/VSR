@@ -1,11 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace VSRapp
+﻿namespace VSRapp
 {
     public class Probe : Node
     {
+        public Probe()
+        {
+        }
+
+        public override string getKey()
+        {
+            return "Probe";
+        }
+
+        public override object Clone()
+        {
+            return new Probe();
+        }
     }
 }

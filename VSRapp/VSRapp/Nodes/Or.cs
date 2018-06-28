@@ -1,11 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace VSRapp
+﻿namespace VSRapp
 {
     public class Or : Node
     {
+        public Or()
+        {
+        }
+
+        public override string getKey()
+        {
+            return "Or";
+        }
+
+        public override object Clone()
+        {
+            return new Or();
+        }
     }
 }

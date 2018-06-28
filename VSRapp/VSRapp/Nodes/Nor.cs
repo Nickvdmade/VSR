@@ -1,11 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace VSRapp
+﻿namespace VSRapp
 {
     public class Nor : Node
     {
+        public Nor()
+        {
+        }
+
+        public override string getKey()
+        {
+            return "Nor";
+        }
+
+        public override object Clone()
+        {
+            return new Nor();
+        }
     }
 }
