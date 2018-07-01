@@ -8,7 +8,7 @@
 
         public override string getKey()
         {
-            return "Nor";
+            return "NOR";
         }
 
         public override object Clone()

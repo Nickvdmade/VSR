@@ -8,7 +8,7 @@
 
         public override string getKey()
         {
-            return "Or";
+            return "OR";
         }
 
         public override object Clone()

@@ -78,20 +78,10 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="VSRapp.Cuircit">
-    <Position X="6.5" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
-      <FileName>Circuit\Cuircit.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Field Name="nodes_" />
-    </ShowAsCollectionAssociation>
-  </Class>
   <Class Name="VSRapp.FactoryMethod&lt;TKey, TObject&gt;">
     <Position X="3.5" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAAAAEAAAAAAAEQAAgAAABIAAAAAABAAAAAAAQ=</HashCode>
+      <HashCode>AAgAAAAAAAAAAAAAIAEQAAgAAABIAAAAAABAAgAAAAA=</HashCode>
       <FileName>Circuit\FactoryMethod.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -109,6 +99,13 @@
       <FileName>Saving\Save.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VSRapp.Circuit" Collapsed="true">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAgAAAAAIAA=</HashCode>
+      <FileName>Circuit\Circuit.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

@@ -8,7 +8,7 @@
 
         public override string getKey()
         {
-            return "InputHigh";
+            return "INPUTHIGH";
         }
 
         public override object Clone()

@@ -8,7 +8,7 @@
 
         public override string getKey()
         {
-            return "Xnor";
+            return "XNOR";
         }
 
         public override object Clone()

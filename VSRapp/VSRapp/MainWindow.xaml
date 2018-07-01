@@ -19,8 +19,8 @@
                 </ToolBar>
             </ToolBarTray>
             <DockPanel DockPanel.Dock="Left" LastChildFill="True">
-                <Button x:Name="AddNode" DockPanel.Dock="Top" VerticalAlignment="Bottom" Content="Add node" IsEnabled="False"/>
-                <ListBox x:Name="ListBox" VerticalAlignment="Stretch" Width="250"/>
+                <Button x:Name="AddNode" DockPanel.Dock="Top" VerticalAlignment="Bottom" Content="Add node" IsEnabled="False" Click="addNode"/>
+                <ListBox x:Name="NodeList" VerticalAlignment="Stretch" Width="250" SelectionChanged="nodeSelectionChanged"/>
             </DockPanel>
             <Canvas DockPanel.Dock="Right" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <Image Name="OrGate" Margin="26,88,0,0" Source="Nodes/Images/OR.jpg"/>

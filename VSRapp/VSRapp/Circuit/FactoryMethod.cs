@@ -8,52 +8,58 @@ namespace VSRapp
         where TObject : ICloneable, IGetKey<TKey>
     {
 
-        private Dictionary<TKey, TObject> m_caObjectMap;
-        static private FactoryMethod<TKey, TObject> m_cInstance = null;
+        private static Dictionary<TKey, TObject> objectMap;
+        static private FactoryMethod<TKey, TObject> instance_ = null;
 
-        public static TObject create(TKey cKey)
+        public static TObject create(TKey key)
         {
-            return instance()._create(cKey);
+            return instance()._create(key);
+        }
+
+        public static Dictionary<TKey, TObject> getList()
+        {
+            instance();
+            return objectMap;
         }
 
         private FactoryMethod()
         {
-            m_caObjectMap = new Dictionary<TKey, TObject>();
+            objectMap = new Dictionary<TKey, TObject>();
         }
 
         private static FactoryMethod<TKey, TObject> instance()
         {
-            if (m_cInstance == null)
+            if (instance_ == null)
             {
-                m_cInstance = new FactoryMethod<TKey, TObject>();
-                m_cInstance.initialize();
+                instance_ = new FactoryMethod<TKey, TObject>();
+                instance_.initialize();
             }
-            return m_cInstance;
+            return instance_;
         }
 
-        private TObject _create(TKey cKey)
+        private TObject _create(TKey key)
         {
-            if (m_caObjectMap.ContainsKey(cKey))
+            if (objectMap.ContainsKey(key))
             {
-                TObject cObject = m_caObjectMap[cKey];
-                return (TObject)cObject.Clone();
+                TObject cloneObject = objectMap[key];
+                return (TObject)cloneObject.Clone();
             }
             return default(TObject);
         }
 
         private void initialize()
         {
-            Type[] caType = System.Reflection.Assembly.GetExecutingAssembly().GetTypes();
-            Type cBaseType = typeof(TObject);
-            TObject cObject;
+            Type[] types = System.Reflection.Assembly.GetExecutingAssembly().GetTypes();
+            Type baseType = typeof(TObject);
+            TObject currentObject;
 
-            foreach (Type type in caType)
+            foreach (Type type in types)
             {
-                if (ableToMake(type) && inheritedFromTObject(type, cBaseType))
+                if (ableToMake(type) && inheritedFromTObject(type, baseType))
                 {
-                    cObject = getDefaultInstance(type);
-                    if (cObject != null)
-                        m_caObjectMap.Add(cObject.getKey(), cObject);
+                    currentObject = getDefaultInstance(type);
+                    if (currentObject != null)
+                        objectMap.Add(currentObject.getKey(), currentObject);
                 }
             }
         }
@@ -65,17 +71,17 @@ namespace VSRapp
 
         private bool inheritedFromTObject(Type type, Type typeTObject)
         {
-            Type cRootType, cNext;
+            Type baseType, next;
 
-            cNext = type.BaseType;
-            cRootType = cNext;
-            while (cNext != null && cRootType.FullName != typeTObject.FullName)
+            next = type.BaseType;
+            baseType = next;
+            while (next != null && baseType.FullName != typeTObject.FullName)
             {
-                cRootType = cNext;
-                cNext = cRootType.BaseType;
+                baseType = next;
+                next = baseType.BaseType;
             }
 
-            return cNext != null && cRootType.FullName == typeTObject.FullName;
+            return next != null && baseType.FullName == typeTObject.FullName;
         }
 
         private TObject getDefaultInstance(Type type)

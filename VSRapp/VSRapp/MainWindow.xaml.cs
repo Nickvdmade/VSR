@@ -1,17 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace VSRapp
 {
@@ -23,6 +13,30 @@ namespace VSRapp
         public MainWindow()
         {
             InitializeComponent();
+            Dictionary<String,Node> listNodes = FactoryMethod<String,Node>.getList();
+            foreach (var node in listNodes)
+            {
+                NodeList.Items.Add(node.Key);
+            }
+        }
+
+        private void nodeSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (NodeList.SelectedItem != null)
+                AddNode.IsEnabled = true;
+            else
+                AddNode.IsEnabled = false;
+        }
+
+        private void addNode(object sender, RoutedEventArgs e)
+        {
+            String nodeName = (String) NodeList.SelectedItem;
+            // TODO: receive name from user
+            String name = "test";
+            Node node = FactoryMethod<String, Node>.create(nodeName);
+            Circuit.addNode(name, node);
+
+            NodeList.UnselectAll();
         }
     }
 }
