@@ -8,7 +8,7 @@ namespace VSRapp
         where TObject : ICloneable, IGetKey<TKey>
     {
 
-        private static Dictionary<TKey, TObject> objectMap;
+        private static Dictionary<TKey, TObject> objectMap_;
         static private FactoryMethod<TKey, TObject> instance_ = null;
 
         public static TObject create(TKey key)
@@ -19,12 +19,12 @@ namespace VSRapp
         public static Dictionary<TKey, TObject> getList()
         {
             instance();
-            return objectMap;
+            return objectMap_;
         }
 
         private FactoryMethod()
         {
-            objectMap = new Dictionary<TKey, TObject>();
+            objectMap_ = new Dictionary<TKey, TObject>();
         }
 
         private static FactoryMethod<TKey, TObject> instance()
@@ -39,9 +39,9 @@ namespace VSRapp
 
         private TObject _create(TKey key)
         {
-            if (objectMap.ContainsKey(key))
+            if (objectMap_.ContainsKey(key))
             {
-                TObject cloneObject = objectMap[key];
+                TObject cloneObject = objectMap_[key];
                 return (TObject)cloneObject.Clone();
             }
             return default(TObject);
@@ -59,7 +59,7 @@ namespace VSRapp
                 {
                     currentObject = getDefaultInstance(type);
                     if (currentObject != null)
-                        objectMap.Add(currentObject.getKey(), currentObject);
+                        objectMap_.Add(currentObject.getKey(), currentObject);
                 }
             }
         }

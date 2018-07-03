@@ -37,21 +37,11 @@ namespace VSRapp
             String nodeName = (String) NodeList.SelectedItem;
             String name = NodeName.Text;
             Node node = FactoryMethod<String, Node>.create(nodeName);
+            node.setName(name);
             Circuit.addNode(name, node);
 
-            Dictionary<String, Node> circuitList = Circuit.getList();
-            Node1.Items.Clear();
-            Node2.Items.Clear();
-            foreach (var item in circuitList)
-            {
-                Node1.Items.Add(item.Key);
-                Node2.Items.Add(item.Key);
-            }
-            Node1.IsEnabled = true;
-            Node2.IsEnabled = true;
-            AddConnection.IsEnabled = true;
-            RemoveConnection.IsEnabled = true;
-
+            updateConnectionList();
+            
             NodeList.UnselectAll();
         }
 
@@ -59,7 +49,49 @@ namespace VSRapp
         {
             String name = NodeName.Text;
             if (!Circuit.removeNode(name))
+            {
                 MessageBox.Show("No node with the name: " + name, "Unknown node name");
+                return;
+            }
+            updateConnectionList();
+        }
+
+        private void updateConnectionList()
+        {
+            Dictionary<String, Node> circuitList = Circuit.getList();
+            OutputNode.Items.Clear();
+            InputNode.Items.Clear();
+            if (circuitList.Count > 0)
+            {
+                foreach (var item in circuitList)
+                {
+                    OutputNode.Items.Add(item.Key);
+                    InputNode.Items.Add(item.Key);
+                }
+                OutputNode.IsEnabled = true;
+                InputNode.IsEnabled = true;
+                AddConnection.IsEnabled = true;
+                RemoveConnection.IsEnabled = true;
+            }
+            else
+            {
+                OutputNode.IsEnabled = false;
+                InputNode.IsEnabled = false;
+                AddConnection.IsEnabled = false;
+                RemoveConnection.IsEnabled = false;
+            }
+        }
+
+        private void addConnection(object sender, RoutedEventArgs e)
+        {
+            String outputNode = OutputNode.Text;
+            String inputNode = InputNode.Text;
+            Circuit.addConnection(outputNode, inputNode);
+        }
+
+        private void removeConnection(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

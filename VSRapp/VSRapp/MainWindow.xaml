@@ -33,10 +33,10 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <ComboBox x:Name="Node1" Height="50" FontSize="15" IsEnabled="false" IsEditable="True"/>
-                        <ComboBox Grid.Column="1" x:Name="Node2" FontSize="15" IsEnabled="False" IsEditable="True"/>
-                        <Button Grid.Column="2" x:Name="AddConnection" Content="Add connection" FontSize="15" IsEnabled="False"/>
-                        <Button Grid.Column="3" x:Name="RemoveConnection" Content="Remove connection" FontSize="15" IsEnabled="False"/>
+                        <ComboBox x:Name="OutputNode" Height="50" Text="Output node" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="false" IsEditable="True"/>
+                        <ComboBox Grid.Column="1" x:Name="InputNode" Text="Input node" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" IsEditable="True"/>
+                        <Button Grid.Column="2" x:Name="AddConnection" Content="Add connection" FontSize="15" IsEnabled="False" Click="addConnection"/>
+                        <Button Grid.Column="3" x:Name="RemoveConnection" Content="Remove connection" FontSize="15" IsEnabled="False" Click="removeConnection"/>
                     </Grid>
                     <Canvas DockPanel.Dock="Right" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
                 </DockPanel>

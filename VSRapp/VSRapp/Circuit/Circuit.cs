@@ -39,6 +39,16 @@ namespace VSRapp
             return instance().nodes_;
         }
 
+        public static void addConnection(String outputNode, String inputNode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void removeConnection(String outputNode, String inputNode)
+        {
+            throw new NotImplementedException();
+        }
+
         private Circuit()
         {
             nodes_ = new Dictionary<String, Node>();
