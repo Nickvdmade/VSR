@@ -13,19 +13,34 @@
                     <Button x:Name="New" Content="New"/>
                     <Button x:Name="Save" Content="Save"/>
                 </ToolBar>
-                <ToolBar>
-                    <Button x:Name="AddConnection" Content="Add connection"/>
-                    <Button x:Name="RemoveConnection" Content="Remove connection"/>
-                </ToolBar>
             </ToolBarTray>
-            <DockPanel DockPanel.Dock="Left" LastChildFill="True">
-                <Button x:Name="AddNode" DockPanel.Dock="Top" VerticalAlignment="Bottom" Content="Add node" IsEnabled="False" Click="addNode"/>
-                <ListBox x:Name="NodeList" VerticalAlignment="Stretch" Width="250" SelectionChanged="nodeSelectionChanged"/>
-            </DockPanel>
-            <Canvas DockPanel.Dock="Right" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                <Image Name="OrGate" Margin="26,88,0,0" Source="Nodes/Images/OR.jpg"/>
-                <Image Name="AndGate" Margin="88,26,0,0" Source="Nodes/Images/AND.jpg"/>
-            </Canvas>
+            <Border BorderThickness="1" BorderBrush="#FFABADB3">
+                <DockPanel DockPanel.Dock="Left" LastChildFill="True">
+                    <TextBox x:Name="NodeName" DockPanel.Dock="Top" Text="Node name" Height="25" TextAlignment="Center" FontSize="15"/>
+                    <DockPanel DockPanel.Dock="Top">
+                        <Button x:Name="AddNode" DockPanel.Dock="Left" VerticalAlignment="Bottom" Content="Add node" IsEnabled="False" Height="25" Width="125" FontSize="15" Click="addNode"/>
+                        <Button x:Name="RemoveNode" DockPanel.Dock="Right" Content="Remove node" FontSize="15" Click="removeNode"/>
+                    </DockPanel>
+                    <ListBox x:Name="NodeList" VerticalAlignment="Stretch" Width="250" FontSize="15" SelectionChanged="nodeSelectionChanged"/>
+                </DockPanel>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="#FFABADB3">
+                <DockPanel>
+                    <Grid DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox x:Name="Node1" Height="50" FontSize="15" IsEnabled="false" IsEditable="True"/>
+                        <ComboBox Grid.Column="1" x:Name="Node2" FontSize="15" IsEnabled="False" IsEditable="True"/>
+                        <Button Grid.Column="2" x:Name="AddConnection" Content="Add connection" FontSize="15" IsEnabled="False"/>
+                        <Button Grid.Column="3" x:Name="RemoveConnection" Content="Remove connection" FontSize="15" IsEnabled="False"/>
+                    </Grid>
+                    <Canvas DockPanel.Dock="Right" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                </DockPanel>
+            </Border>
         </DockPanel>
     </Grid>
 </Window>

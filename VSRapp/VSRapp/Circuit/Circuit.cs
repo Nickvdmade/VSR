@@ -15,6 +15,17 @@ namespace VSRapp
             nodes.Add(name, node);
         }
 
+        public static int getAmount()
+        {
+            Dictionary<String, Node> nodes = instance().nodes_;
+            return nodes.Count;
+        }
+
+        public static Dictionary<String, Node> getList()
+        {
+            return instance().nodes_;
+        }
+
         private Circuit()
         {
             nodes_ = new Dictionary<String, Node>();
