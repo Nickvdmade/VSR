@@ -15,6 +15,19 @@ namespace VSRapp
             nodes.Add(name, node);
         }
 
+        public static Boolean removeNode(String name)
+        {
+            Dictionary<String, Node> nodes = instance().nodes_;
+            if (nodes.ContainsKey(name))
+            {
+                Node node = nodes[name];
+                // TODO: remove connections
+                nodes.Remove(name);
+                return true;
+            }
+            return false;
+        }
+
         public static int getAmount()
         {
             Dictionary<String, Node> nodes = instance().nodes_;

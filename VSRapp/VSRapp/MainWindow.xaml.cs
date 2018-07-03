@@ -57,7 +57,9 @@ namespace VSRapp
 
         private void removeNode(object sender, RoutedEventArgs e)
         {
-
+            String name = NodeName.Text;
+            if (!Circuit.removeNode(name))
+                MessageBox.Show("No node with the name: " + name, "Unknown node name");
         }
     }
 }
