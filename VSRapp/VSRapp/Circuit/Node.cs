@@ -61,6 +61,16 @@ namespace VSRapp
                 outputNodes_.Remove(node);
         }
 
+        public void removeConnections()
+        {
+            foreach (var node in inputNodes_)
+                node.removeOutput(this);
+            inputNodes_.Clear();
+            foreach (var node in outputNodes_)
+                node.removeInput(this);
+            outputNodes_.Clear();
+        }
+
         public abstract String getKey();
         public abstract object Clone();
     }

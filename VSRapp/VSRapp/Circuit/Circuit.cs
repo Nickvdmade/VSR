@@ -22,7 +22,7 @@ namespace VSRapp
             {
                 Dictionary<String, Node> nodes = instance().nodes_;
                 Node node = nodes[name];
-                // TODO: remove connections
+                node.removeConnections();
                 nodes.Remove(name);
                 MessageBox.Show(name + " has been removed", "Remove node");
             }
