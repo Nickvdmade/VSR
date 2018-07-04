@@ -6,9 +6,9 @@ namespace VSRapp
 {
     public abstract class Node : ICloneable, IGetKey<String>
     {
-        private List<Node> inputNodes_;
-        private List<Node> outputNodes_;
-        private String name_;
+        protected List<Node> inputNodes_;
+        protected List<Node> outputNodes_;
+        protected String name_;
 
         protected Node()
         {
@@ -31,11 +31,11 @@ namespace VSRapp
             return name_;
         }
 
-        public Boolean addInput(Node node)
+        public virtual Boolean addInput(Node node)
         {
             if (inputNodes_.Count == 2)
             {
-                MessageBox.Show(name_ + " can't have more than 2 inputs", "Too many inputs");
+                MessageBox.Show(name_ + " can't have more than 2 inputs", "Add inputs");
                 return false;
             }
             inputNodes_.Add(node);
@@ -50,9 +50,10 @@ namespace VSRapp
             return true;
         }
 
-        public void addOutput(Node node)
+        public virtual Boolean addOutput(Node node)
         {
             outputNodes_.Add(node);
+            return true;
         }
 
         public void removeOutput(Node node)

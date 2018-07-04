@@ -46,7 +46,11 @@ namespace VSRapp
                 Dictionary<String, Node> nodes = instance().nodes_;
                 if (!nodes[inputNode].addInput(nodes[outputNode]))
                     return;
-                nodes[outputNode].addOutput(nodes[inputNode]);
+                if (!nodes[outputNode].addOutput(nodes[inputNode]))
+                {
+                    nodes[inputNode].removeInput(nodes[outputNode]);
+                    return;
+                }
                 MessageBox.Show("Added connection between " + outputNode + " and " + inputNode, "Add connection");
             }
         }
