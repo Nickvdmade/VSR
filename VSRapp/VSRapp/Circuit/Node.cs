@@ -12,6 +12,8 @@ namespace VSRapp
 
         protected Node()
         {
+            inputNodes_ = new List<Node>();
+            outputNodes_ = new List<Node>();
         }
 
         public static Node create(String name)
@@ -29,55 +31,34 @@ namespace VSRapp
             return name_;
         }
 
-        public void addInput(Node node)
+        public Boolean addInput(Node node)
         {
             if (inputNodes_.Count == 2)
             {
                 MessageBox.Show(name_ + " can't have more than 2 inputs", "Too many inputs");
-                return;
+                return false;
             }
             inputNodes_.Add(node);
-            showConnections();
+            return true;
         }
 
-        public void removeInput(Node node)
+        public Boolean removeInput(Node node)
         {
-            if (inputNodes_.Contains(node))
-            {
-                inputNodes_.Remove(node);
-            }
-            showConnections();
+            if (!inputNodes_.Contains(node))
+                return false;
+            inputNodes_.Remove(node);
+            return true;
         }
 
         public void addOutput(Node node)
         {
             outputNodes_.Add(node);
-            showConnections();
         }
 
         public void removeOutput(Node node)
         {
             if (outputNodes_.Contains(node))
-            {
                 outputNodes_.Remove(node);
-            }
-            showConnections();
-        }
-
-        private void showConnections()
-        {
-            String inputs = "";
-            String outputs = "";
-            foreach (var node in inputNodes_)
-            {
-                inputs += "\t" + node.getName();
-            }
-            foreach (var node in outputNodes_)
-            {
-                outputs += "\t" + node.getName();
-            }
-            MessageBox.Show("Connections to input" + inputs + "\nConnections from output" + outputs,
-                "Inputs and Outputs");
         }
 
         public abstract String getKey();

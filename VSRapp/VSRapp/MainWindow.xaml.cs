@@ -48,11 +48,7 @@ namespace VSRapp
         private void removeNode(object sender, RoutedEventArgs e)
         {
             String name = NodeName.Text;
-            if (!Circuit.removeNode(name))
-            {
-                MessageBox.Show("No node with the name: " + name, "Unknown node name");
-                return;
-            }
+            Circuit.removeNode(name);
             updateConnectionList();
         }
 
@@ -91,7 +87,9 @@ namespace VSRapp
 
         private void removeConnection(object sender, RoutedEventArgs e)
         {
-
+            String outputNode = OutputNode.Text;
+            String inputNode = InputNode.Text;
+            Circuit.removeConnection(outputNode, inputNode);
         }
     }
 }

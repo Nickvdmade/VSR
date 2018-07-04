@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace VSRapp
 {
@@ -15,17 +16,16 @@ namespace VSRapp
             nodes.Add(name, node);
         }
 
-        public static Boolean removeNode(String name)
+        public static void removeNode(String name)
         {
-            Dictionary<String, Node> nodes = instance().nodes_;
-            if (nodes.ContainsKey(name))
+            if (instance().hadNode(name))
             {
+                Dictionary<String, Node> nodes = instance().nodes_;
                 Node node = nodes[name];
                 // TODO: remove connections
                 nodes.Remove(name);
-                return true;
+                MessageBox.Show(name + " has been removed", "Remove node");
             }
-            return false;
         }
 
         public static int getAmount()
@@ -41,12 +41,29 @@ namespace VSRapp
 
         public static void addConnection(String outputNode, String inputNode)
         {
-            throw new NotImplementedException();
+            if (instance().hadNode(outputNode) && instance().hadNode(inputNode))
+            {
+                Dictionary<String, Node> nodes = instance().nodes_;
+                if (!nodes[inputNode].addInput(nodes[outputNode]))
+                    return;
+                nodes[outputNode].addOutput(nodes[inputNode]);
+                MessageBox.Show("Added connection between " + outputNode + " and " + inputNode, "Add connection");
+            }
         }
 
         public static void removeConnection(String outputNode, String inputNode)
         {
-            throw new NotImplementedException();
+            if (instance().hadNode(outputNode) && instance().hadNode(inputNode))
+            {
+                Dictionary<String, Node> nodes = instance().nodes_;
+                if (!nodes[inputNode].removeInput(nodes[outputNode]))
+                {
+                    MessageBox.Show("No connection between " + outputNode + " and " + inputNode, "Remove connection");
+                    return;
+                }
+                nodes[outputNode].removeOutput(nodes[inputNode]);
+                MessageBox.Show("Removed connection between " + outputNode + " and " + inputNode, "Remove connection");
+            }
         }
 
         private Circuit()
@@ -61,6 +78,14 @@ namespace VSRapp
                 instance_ = new Circuit();
             }
             return instance_;
+        }
+
+        private Boolean hadNode(String name)
+        {
+            if (nodes_.ContainsKey(name))
+                return true;
+            MessageBox.Show("No node with the name: " + name, "Unknown node name");
+            return false;
         }
 
     }
