@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace VSRapp
 {
@@ -10,9 +12,26 @@ namespace VSRapp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Point startingPoint;
+        private Point endPoint;
+        private Boolean itemSelected;
+        private Boolean horizontal;
+        private Boolean vertical;
+        private Image image;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            Image newImage = new Image();
+            newImage.Source = new BitmapImage(new Uri(@"/Nodes/Images/INPUT_HIGH.png", UriKind.Relative));
+            newImage.MouseLeftButtonDown += selectItemHorizontal;
+            newImage.MouseLeftButtonUp += deselectItemHorizontal;
+            newImage.MouseRightButtonDown += selectItemVertical;
+            newImage.MouseRightButtonUp += deselectItemVertical;
+            newImage.MouseMove += moveItem;
+            CircuitCanvas.Children.Add(newImage);
+
             Dictionary<String, Node> listNodes = FactoryMethod<String, Node>.getList();
             foreach (var node in listNodes)
             {
@@ -90,6 +109,80 @@ namespace VSRapp
             String outputNode = OutputNode.Text;
             String inputNode = InputNode.Text;
             Circuit.removeConnection(outputNode, inputNode);
+        }
+
+        private void selectItemHorizontal(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            startingPoint = Mouse.GetPosition(CircuitCanvas);
+            itemSelected = true;
+            horizontal = true;
+            image = sender as Image;
+        }
+
+        private void deselectItemHorizontal(object sender, MouseButtonEventArgs e)
+        {
+            endPoint = Mouse.GetPosition(CircuitCanvas);
+            if (horizontal)
+                if (Math.Abs(endPoint.X - startingPoint.X) >= 10)
+                {
+                    double x = endPoint.X - startingPoint.X;
+                    Point testLocation = image.TranslatePoint(new Point(0, 0), CircuitCanvas);
+                    Canvas.SetLeft(image, testLocation.X + x);
+                    startingPoint = endPoint;
+                }
+            
+            itemSelected = false;
+            horizontal = false;
+            image = null;
+        }
+
+        private void selectItemVertical(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            startingPoint = Mouse.GetPosition(CircuitCanvas);
+            itemSelected = true;
+            vertical = true;
+            image = sender as Image;
+        }
+
+        private void deselectItemVertical(object sender, MouseButtonEventArgs e)
+        {
+            endPoint = Mouse.GetPosition(CircuitCanvas);
+            if (vertical)
+                if (Math.Abs(endPoint.Y - startingPoint.Y) >= 10)
+                {
+                    double y = endPoint.Y - startingPoint.Y;
+                    Point testLocation = image.TranslatePoint(new Point(0, 0), CircuitCanvas);
+                    Canvas.SetTop(image, testLocation.Y + y);
+                    startingPoint = endPoint;
+                }
+
+            itemSelected = false;
+            vertical = false;
+            image = null;
+        }
+
+        private void moveItem(object sender, MouseEventArgs e)
+        {
+            if (itemSelected)
+            {
+                endPoint = Mouse.GetPosition(CircuitCanvas);
+                if (horizontal)
+                    if (Math.Abs(endPoint.X - startingPoint.X) >= 10)
+                    {
+                        double x = endPoint.X - startingPoint.X;
+                        Point testLocation = image.TranslatePoint(new Point(0, 0), CircuitCanvas);
+                        Canvas.SetLeft(image, testLocation.X + x);
+                        startingPoint = endPoint;
+                    }
+                if (vertical)
+                    if (Math.Abs(endPoint.Y - startingPoint.Y) >= 10)
+                    {
+                        double y = endPoint.Y - startingPoint.Y;
+                        Point testLocation = image.TranslatePoint(new Point(0, 0), CircuitCanvas);
+                        Canvas.SetTop(image, testLocation.Y + y);
+                        startingPoint = endPoint;
+                    }
+            }
         }
     }
 }

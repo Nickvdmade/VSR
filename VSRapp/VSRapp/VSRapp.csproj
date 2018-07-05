@@ -110,20 +110,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Nodes\Images\NOR.jpg" />
-    <Resource Include="Nodes\Images\OR.jpg" />
-    <Resource Include="Nodes\Images\XNOR.jpg" />
-    <Resource Include="Nodes\Images\XOR.jpg" />
+    <Resource Include="Nodes\Images\AND.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Nodes\Images\AND.jpg" />
-    <Resource Include="Nodes\Images\NAND.jpg" />
-    <Resource Include="Nodes\Images\NOT.jpg" />
+    <Resource Include="Nodes\Images\OR.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Nodes\Images\INPUT_HIGH.jpg" />
-    <Resource Include="Nodes\Images\INPUT_LOW.jpg" />
-    <Resource Include="Nodes\Images\PROBE.jpg" />
+    <Resource Include="Nodes\Images\INPUT_HIGH.png" />
+    <Resource Include="Nodes\Images\INPUT_LOW.png" />
+    <Resource Include="Nodes\Images\NAND.png" />
+    <Resource Include="Nodes\Images\NOR.png" />
+    <Resource Include="Nodes\Images\NOT.png" />
+    <Resource Include="Nodes\Images\PROBE.png" />
+    <Resource Include="Nodes\Images\XNOR.png" />
+    <Resource Include="Nodes\Images\XOR.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

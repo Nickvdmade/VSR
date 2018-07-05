@@ -38,7 +38,7 @@
                         <Button Grid.Column="2" x:Name="AddConnection" Content="Add connection" FontSize="15" IsEnabled="False" Click="addConnection"/>
                         <Button Grid.Column="3" x:Name="RemoveConnection" Content="Remove connection" FontSize="15" IsEnabled="False" Click="removeConnection"/>
                     </Grid>
-                    <Canvas DockPanel.Dock="Right" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                    <Canvas DockPanel.Dock="Right" x:Name="CircuitCanvas" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
                 </DockPanel>
             </Border>
         </DockPanel>
