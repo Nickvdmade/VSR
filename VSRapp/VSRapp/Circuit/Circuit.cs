@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace VSRapp
 {
@@ -9,21 +11,29 @@ namespace VSRapp
 
         static private Circuit instance_ = null;
         private Dictionary<String, Node> nodes_ = new Dictionary<String, Node>();
+        private static Dictionary<String, Image> images_ = new Dictionary<String, Image>();
 
         public static void addNode(String name, Node node)
         {
             Dictionary<String, Node> nodes = instance().nodes_;
             nodes.Add(name, node);
+            Image image = new Image();
+            image.Source = new BitmapImage(node.getUri());
+            MainWindow.addImage(image);
+            images_.Add(name, image);
         }
 
         public static void removeNode(String name)
         {
-            if (instance().hadNode(name))
+            if (instance().hasNode(name))
             {
                 Dictionary<String, Node> nodes = instance().nodes_;
                 Node node = nodes[name];
                 node.removeConnections();
                 nodes.Remove(name);
+                Image image = images_[name];
+                MainWindow.removeImage(image);
+                images_.Remove(name);
                 MessageBox.Show(name + " has been removed", "Remove node");
             }
         }
@@ -41,7 +51,7 @@ namespace VSRapp
 
         public static void addConnection(String outputNode, String inputNode)
         {
-            if (instance().hadNode(outputNode) && instance().hadNode(inputNode))
+            if (instance().hasNode(outputNode) && instance().hasNode(inputNode))
             {
                 Dictionary<String, Node> nodes = instance().nodes_;
                 if (!nodes[inputNode].addInput(nodes[outputNode]))
@@ -57,7 +67,7 @@ namespace VSRapp
 
         public static void removeConnection(String outputNode, String inputNode)
         {
-            if (instance().hadNode(outputNode) && instance().hadNode(inputNode))
+            if (instance().hasNode(outputNode) && instance().hasNode(inputNode))
             {
                 Dictionary<String, Node> nodes = instance().nodes_;
                 if (!nodes[inputNode].removeInput(nodes[outputNode]))
@@ -84,7 +94,7 @@ namespace VSRapp
             return instance_;
         }
 
-        private Boolean hadNode(String name)
+        private Boolean hasNode(String name)
         {
             if (nodes_.ContainsKey(name))
                 return true;

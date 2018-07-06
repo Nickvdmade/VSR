@@ -20,6 +20,11 @@ namespace VSRapp
             return "INPUTHIGH";
         }
 
+        public override Uri getUri()
+        {
+            return new Uri(@"Nodes/Images/INPUT_HIGH.png", UriKind.Relative);
+        }
+
         public override object Clone()
         {
             return new InputHigh();

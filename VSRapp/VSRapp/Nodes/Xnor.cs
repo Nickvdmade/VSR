@@ -1,4 +1,6 @@
-﻿namespace VSRapp
+﻿using System;
+
+namespace VSRapp
 {
     public class Xnor : Node
     {
@@ -9,6 +11,11 @@
         public override string getKey()
         {
             return "XNOR";
+        }
+
+        public override Uri getUri()
+        {
+            return new Uri(@"Nodes/Images/XNOR.png", UriKind.Relative);
         }
 
         public override object Clone()

@@ -31,6 +31,11 @@ namespace VSRapp
             return "PROBE";
         }
 
+        public override Uri getUri()
+        {
+            return new Uri(@"Nodes/Images/PROBE.png", UriKind.Relative);
+        }
+
         public override object Clone()
         {
             return new Probe();

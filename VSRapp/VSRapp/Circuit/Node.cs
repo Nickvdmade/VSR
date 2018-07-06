@@ -73,6 +73,7 @@ namespace VSRapp
         }
 
         public abstract String getKey();
+        public abstract Uri getUri();
         public abstract object Clone();
     }
 }

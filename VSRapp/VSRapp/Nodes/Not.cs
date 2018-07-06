@@ -25,6 +25,11 @@ namespace VSRapp
             return "NOT";
         }
 
+        public override Uri getUri()
+        {
+            return new Uri(@"Nodes/Images/NOT.png", UriKind.Relative);
+        }
+
         public override object Clone()
         {
             return new Not();
