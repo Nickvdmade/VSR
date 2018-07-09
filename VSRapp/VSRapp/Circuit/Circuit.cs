@@ -9,18 +9,25 @@ namespace VSRapp
     public class Circuit
     {
 
-        static private Circuit instance_ = null;
+        static private Circuit instance_;
         private Dictionary<String, Node> nodes_ = new Dictionary<String, Node>();
         private static Dictionary<String, Image> images_ = new Dictionary<String, Image>();
+        private static Dictionary<String, TextBlock> texts_ = new Dictionary<string, TextBlock>();
 
         public static void addNode(String name, Node node)
         {
             Dictionary<String, Node> nodes = instance().nodes_;
             nodes.Add(name, node);
+            BitmapImage test = new BitmapImage(node.getUri());
             Image image = new Image();
             image.Source = new BitmapImage(node.getUri());
-            MainWindow.addImage(image);
+            image.Width = 93;
+            image.Height = 40;
             images_.Add(name, image);
+            TextBlock text = new TextBlock();
+            text.Text = name;
+            MainWindow.addImage(image, text);
+            texts_.Add(name, text);
         }
 
         public static void removeNode(String name)
@@ -32,10 +39,23 @@ namespace VSRapp
                 node.removeConnections();
                 nodes.Remove(name);
                 Image image = images_[name];
-                MainWindow.removeImage(image);
+                MainWindow.removeElement(image);
                 images_.Remove(name);
+                TextBlock text = texts_[name];
+                MainWindow.removeElement(text);
+                texts_.Remove(name);
                 MessageBox.Show(name + " has been removed", "Remove node");
             }
+        }
+
+        public static TextBlock getRelativeText(Image image)
+        {
+            foreach (var item in images_)
+            {
+                if (item.Value == image)
+                    return texts_[item.Key];
+            }
+            return null;
         }
 
         public static int getAmount()

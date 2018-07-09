@@ -12,19 +12,19 @@ namespace VSRapp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static Point startingPoint;
-        private static Point endPoint;
-        private static Boolean itemSelected;
-        private static Boolean horizontal;
-        private static Boolean vertical;
-        private static Image image;
-        private static Canvas circuitCanvas;
+        private static Point startingPoint_;
+        private static Point endPoint_;
+        private static Boolean itemSelected_;
+        private static Boolean horizontal_;
+        private static Boolean vertical_;
+        private static Image image_;
+        private static Canvas circuitCanvas_;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            circuitCanvas = CircuitCanvas;
+            circuitCanvas_ = CircuitCanvas;
 
             Dictionary<String, Node> listNodes = FactoryMethod<String, Node>.getList();
             foreach (var node in listNodes)
@@ -33,19 +33,23 @@ namespace VSRapp
             }
         }
 
-        public static void addImage(Image toAdd)
+        public static void addImage(Image imageAdd, TextBlock textAdd)
         {
-            toAdd.MouseLeftButtonDown += selectItemHorizontal;
-            toAdd.MouseLeftButtonUp += deselectItemHorizontal;
-            toAdd.MouseRightButtonDown += selectItemVertical;
-            toAdd.MouseRightButtonUp += deselectItemVertical;
-            toAdd.MouseMove += moveItem;
-            circuitCanvas.Children.Add(toAdd);
+            imageAdd.MouseLeftButtonDown += selectItemHorizontal;
+            imageAdd.MouseLeftButtonUp += deselectItemHorizontal;
+            imageAdd.MouseRightButtonDown += selectItemVertical;
+            imageAdd.MouseRightButtonUp += deselectItemVertical;
+            imageAdd.MouseMove += moveItem;
+            circuitCanvas_.Children.Add(imageAdd);
+            circuitCanvas_.Children.Add(textAdd);
+            Point location = imageAdd.TranslatePoint(new Point(0, 0), circuitCanvas_);
+            Canvas.SetLeft(textAdd, location.X);
+            Canvas.SetTop(textAdd, location.Y + imageAdd.Height);
         }
 
-        public static void removeImage(Image toRemove)
+        public static void removeElement(UIElement toRemove)
         {
-            circuitCanvas.Children.Remove(toRemove);
+            circuitCanvas_.Children.Remove(toRemove);
         }
 
         private void nodeSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -122,76 +126,87 @@ namespace VSRapp
 
         private static void selectItemHorizontal(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            startingPoint = Mouse.GetPosition(circuitCanvas);
-            itemSelected = true;
-            horizontal = true;
-            image = sender as Image;
+            startingPoint_ = Mouse.GetPosition(circuitCanvas_);
+            itemSelected_ = true;
+            horizontal_ = true;
+            image_ = sender as Image;
         }
 
         private static void deselectItemHorizontal(object sender, MouseButtonEventArgs e)
         {
-            endPoint = Mouse.GetPosition(circuitCanvas);
-            if (horizontal)
-                if (Math.Abs(endPoint.X - startingPoint.X) >= 10)
+            endPoint_ = Mouse.GetPosition(circuitCanvas_);
+            if (horizontal_)
+                if (Math.Abs(endPoint_.X - startingPoint_.X) >= 10)
                 {
-                    double x = endPoint.X - startingPoint.X;
-                    Point testLocation = image.TranslatePoint(new Point(0, 0), circuitCanvas);
-                    Canvas.SetLeft(image, testLocation.X + x);
-                    startingPoint = endPoint;
+                    double x = endPoint_.X - startingPoint_.X;
+                    Point location = image_.TranslatePoint(new Point(0, 0), circuitCanvas_);
+                    Canvas.SetLeft(image_, location.X + x);
+                    startingPoint_ = endPoint_;
                 }
+            updateText();
             
-            itemSelected = false;
-            horizontal = false;
-            image = null;
+            itemSelected_ = false;
+            horizontal_ = false;
+            image_ = null;
         }
 
         private static void selectItemVertical(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            startingPoint = Mouse.GetPosition(circuitCanvas);
-            itemSelected = true;
-            vertical = true;
-            image = sender as Image;
+            startingPoint_ = Mouse.GetPosition(circuitCanvas_);
+            itemSelected_ = true;
+            vertical_ = true;
+            image_ = sender as Image;
         }
 
         private static void deselectItemVertical(object sender, MouseButtonEventArgs e)
         {
-            endPoint = Mouse.GetPosition(circuitCanvas);
-            if (vertical)
-                if (Math.Abs(endPoint.Y - startingPoint.Y) >= 10)
+            endPoint_ = Mouse.GetPosition(circuitCanvas_);
+            if (vertical_)
+                if (Math.Abs(endPoint_.Y - startingPoint_.Y) >= 10)
                 {
-                    double y = endPoint.Y - startingPoint.Y;
-                    Point testLocation = image.TranslatePoint(new Point(0, 0), circuitCanvas);
-                    Canvas.SetTop(image, testLocation.Y + y);
-                    startingPoint = endPoint;
+                    double y = endPoint_.Y - startingPoint_.Y;
+                    Point location = image_.TranslatePoint(new Point(0, 0), circuitCanvas_);
+                    Canvas.SetTop(image_, location.Y + y);
+                    startingPoint_ = endPoint_;
                 }
+            updateText();
 
-            itemSelected = false;
-            vertical = false;
-            image = null;
+            itemSelected_ = false;
+            vertical_ = false;
+            image_ = null;
         }
 
         private static void moveItem(object sender, MouseEventArgs e)
         {
-            if (itemSelected)
+            if (itemSelected_)
             {
-                endPoint = Mouse.GetPosition(circuitCanvas);
-                if (horizontal)
-                    if (Math.Abs(endPoint.X - startingPoint.X) >= 10)
+                endPoint_ = Mouse.GetPosition(circuitCanvas_);
+                if (horizontal_)
+                    if (Math.Abs(endPoint_.X - startingPoint_.X) >= 10)
                     {
-                        double x = endPoint.X - startingPoint.X;
-                        Point testLocation = image.TranslatePoint(new Point(0, 0), circuitCanvas);
-                        Canvas.SetLeft(image, testLocation.X + x);
-                        startingPoint = endPoint;
+                        double x = endPoint_.X - startingPoint_.X;
+                        Point location = image_.TranslatePoint(new Point(0, 0), circuitCanvas_);
+                        Canvas.SetLeft(image_, location.X + x);
+                        startingPoint_ = endPoint_;
                     }
-                if (vertical)
-                    if (Math.Abs(endPoint.Y - startingPoint.Y) >= 10)
+                if (vertical_)
+                    if (Math.Abs(endPoint_.Y - startingPoint_.Y) >= 10)
                     {
-                        double y = endPoint.Y - startingPoint.Y;
-                        Point testLocation = image.TranslatePoint(new Point(0, 0), circuitCanvas);
-                        Canvas.SetTop(image, testLocation.Y + y);
-                        startingPoint = endPoint;
+                        double y = endPoint_.Y - startingPoint_.Y;
+                        Point location = image_.TranslatePoint(new Point(0, 0), circuitCanvas_);
+                        Canvas.SetTop(image_, location.Y + y);
+                        startingPoint_ = endPoint_;
                     }
+                updateText();
             }
+        }
+
+        private static void updateText()
+        {
+            TextBlock text = Circuit.getRelativeText(image_);
+            Point location = image_.TranslatePoint(new Point(0, 0), circuitCanvas_);
+            Canvas.SetLeft(text, location.X);
+            Canvas.SetTop(text, location.Y + image_.Height);
         }
     }
 }
