@@ -11,57 +11,65 @@ namespace VSRapp
 
         static private Circuit instance_;
         private Dictionary<String, Node> nodes_ = new Dictionary<String, Node>();
-        private static Dictionary<String, Image> images_ = new Dictionary<String, Image>();
-        private static Dictionary<String, TextBlock> texts_ = new Dictionary<string, TextBlock>();
+        private Dictionary<String, Image> images_ = new Dictionary<String, Image>();
+        private Dictionary<String, TextBlock> texts_ = new Dictionary<string, TextBlock>();
+        private int counter_ = 1;
 
         public static void addNode(String name, Node node)
         {
-            Dictionary<String, Node> nodes = instance().nodes_;
-            nodes.Add(name, node);
-            BitmapImage test = new BitmapImage(node.getUri());
-            Image image = new Image();
-            image.Source = new BitmapImage(node.getUri());
-            image.Width = 93;
-            image.Height = 40;
-            images_.Add(name, image);
-            TextBlock text = new TextBlock();
-            text.Text = name;
-            MainWindow.addImage(image, text);
-            texts_.Add(name, text);
+            Circuit instance = Circuit.instance();
+            if (!instance.nodes_.ContainsKey(name))
+            {
+                Dictionary<String, Node> nodes = instance.nodes_;
+                nodes.Add(name, node);
+                Image image = new Image();
+                image.Source = new BitmapImage(node.getUri());
+                image.Width = 93;
+                image.Height = 40;
+                instance.images_.Add(name, image);
+                TextBlock text = new TextBlock();
+                text.Text = name;
+                MainWindow.addImage(image, text);
+                instance.texts_.Add(name, text);
+                instance.counter_++;
+                return;
+            }
+            MessageBox.Show("name already exists", "Add node");
         }
 
         public static void removeNode(String name)
         {
-            if (instance().hasNode(name))
+            Circuit instance = Circuit.instance();
+            if (instance.hasNode(name))
             {
-                Dictionary<String, Node> nodes = instance().nodes_;
+                Dictionary<String, Node> nodes = instance.nodes_;
                 Node node = nodes[name];
                 node.removeConnections();
                 nodes.Remove(name);
-                Image image = images_[name];
+                Image image = instance.images_[name];
                 MainWindow.removeElement(image);
-                images_.Remove(name);
-                TextBlock text = texts_[name];
+                instance.images_.Remove(name);
+                TextBlock text = instance.texts_[name];
                 MainWindow.removeElement(text);
-                texts_.Remove(name);
+                instance.texts_.Remove(name);
                 MessageBox.Show(name + " has been removed", "Remove node");
             }
         }
 
         public static TextBlock getRelativeText(Image image)
         {
-            foreach (var item in images_)
+            Circuit instance = Circuit.instance();
+            foreach (var item in instance.images_)
             {
                 if (item.Value == image)
-                    return texts_[item.Key];
+                    return instance.texts_[item.Key];
             }
             return null;
         }
 
         public static int getAmount()
         {
-            Dictionary<String, Node> nodes = instance().nodes_;
-            return nodes.Count;
+            return instance().counter_;
         }
 
         public static Dictionary<String, Node> getList()

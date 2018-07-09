@@ -57,7 +57,7 @@ namespace VSRapp
             if (NodeList.SelectedItem != null)
             {
                 AddNode.IsEnabled = true;
-                int amount = Circuit.getAmount() + 1;
+                int amount = Circuit.getAmount();
                 NodeName.Text = "Node" + amount;
             }
             else
@@ -89,7 +89,7 @@ namespace VSRapp
             Dictionary<String, Node> circuitList = Circuit.getList();
             OutputNode.Items.Clear();
             InputNode.Items.Clear();
-            if (circuitList.Count > 0)
+            if (circuitList.Count > 1)
             {
                 foreach (var item in circuitList)
                 {
