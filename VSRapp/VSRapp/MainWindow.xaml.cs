@@ -12,11 +12,8 @@ namespace VSRapp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static Point startingPoint_;
-        private static Point endPoint_;
-        private static Boolean itemSelected_;
-        private static Boolean horizontal_;
-        private static Boolean vertical_;
+        private static Point startingPoint_, endPoint_;
+        private static Boolean itemSelected_, horizontal_, vertical_;
         private static Image image_;
         private static Canvas circuitCanvas_;
 
@@ -87,24 +84,24 @@ namespace VSRapp
         private void updateConnectionList()
         {
             Dictionary<String, Node> circuitList = Circuit.getList();
-            OutputNode.Items.Clear();
-            InputNode.Items.Clear();
+            FromNode.Items.Clear();
+            ToNode.Items.Clear();
             if (circuitList.Count > 1)
             {
                 foreach (var item in circuitList)
                 {
-                    OutputNode.Items.Add(item.Key);
-                    InputNode.Items.Add(item.Key);
+                    FromNode.Items.Add(item.Key);
+                    ToNode.Items.Add(item.Key);
                 }
-                OutputNode.IsEnabled = true;
-                InputNode.IsEnabled = true;
+                FromNode.IsEnabled = true;
+                ToNode.IsEnabled = true;
                 AddConnection.IsEnabled = true;
                 RemoveConnection.IsEnabled = true;
             }
             else
             {
-                OutputNode.IsEnabled = false;
-                InputNode.IsEnabled = false;
+                FromNode.IsEnabled = false;
+                ToNode.IsEnabled = false;
                 AddConnection.IsEnabled = false;
                 RemoveConnection.IsEnabled = false;
             }
@@ -112,16 +109,16 @@ namespace VSRapp
 
         private void addConnection(object sender, RoutedEventArgs e)
         {
-            String outputNode = OutputNode.Text;
-            String inputNode = InputNode.Text;
-            Circuit.addConnection(outputNode, inputNode);
+            String fromNode = FromNode.Text;
+            String toNode = ToNode.Text;
+            Circuit.addConnection(fromNode, toNode, circuitCanvas_);
         }
 
         private void removeConnection(object sender, RoutedEventArgs e)
         {
-            String outputNode = OutputNode.Text;
-            String inputNode = InputNode.Text;
-            Circuit.removeConnection(outputNode, inputNode);
+            String fromNode = FromNode.Text;
+            String toNode = ToNode.Text;
+            Circuit.removeConnection(fromNode, toNode, circuitCanvas_);
         }
 
         private static void selectItemHorizontal(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -169,6 +166,7 @@ namespace VSRapp
                     Canvas.SetTop(image_, location.Y + y);
                     startingPoint_ = endPoint_;
                 }
+            Circuit.updateConnections(image_, circuitCanvas_);
             updateText();
 
             itemSelected_ = false;
@@ -197,6 +195,7 @@ namespace VSRapp
                         Canvas.SetTop(image_, location.Y + y);
                         startingPoint_ = endPoint_;
                     }
+                Circuit.updateConnections(image_, circuitCanvas_);
                 updateText();
             }
         }

@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace VSRapp
 {
@@ -13,6 +16,7 @@ namespace VSRapp
         private Dictionary<String, Node> nodes_ = new Dictionary<String, Node>();
         private Dictionary<String, Image> images_ = new Dictionary<String, Image>();
         private Dictionary<String, TextBlock> texts_ = new Dictionary<string, TextBlock>();
+        private Dictionary<Connection, Line> connections_ = new Dictionary<Connection, Line>();
         private int counter_ = 1;
 
         public static void addNode(String name, Node node)
@@ -61,7 +65,7 @@ namespace VSRapp
             Circuit instance = Circuit.instance();
             foreach (var item in instance.images_)
             {
-                if (item.Value == image)
+                if (Equals(item.Value, image))
                     return instance.texts_[item.Key];
             }
             return null;
@@ -77,34 +81,117 @@ namespace VSRapp
             return instance().nodes_;
         }
 
-        public static void addConnection(String outputNode, String inputNode)
+        public static void addConnection(String fromNode, String toNode, Canvas circuitCanvas)
         {
-            if (instance().hasNode(outputNode) && instance().hasNode(inputNode))
+            if (instance().hasNode(fromNode) && instance().hasNode(toNode))
             {
                 Dictionary<String, Node> nodes = instance().nodes_;
-                if (!nodes[inputNode].addInput(nodes[outputNode]))
+                Node nodeTo = nodes[toNode];
+                Node nodeFrom = nodes[fromNode];
+                if (!nodeTo.addInput(nodeFrom))
                     return;
-                if (!nodes[outputNode].addOutput(nodes[inputNode]))
+                if (!nodeFrom.addOutput(nodeTo))
                 {
-                    nodes[inputNode].removeInput(nodes[outputNode]);
+                    nodeTo.removeInput(nodeFrom);
                     return;
                 }
-                MessageBox.Show("Added connection between " + outputNode + " and " + inputNode, "Add connection");
+
+                Dictionary<String, Image> images = instance().images_;
+                Image fromImage = images[fromNode];
+                Image toImage = images[toNode];
+                Point fromPoint = fromImage.TranslatePoint(new Point(0, 0), circuitCanvas);
+                Point toPoint = toImage.TranslatePoint(new Point(0, 0), circuitCanvas);
+                fromPoint = nodeFrom.getOutputPoint(fromPoint, fromImage);
+                toPoint = nodeTo.getInputPoint(toPoint, toImage, nodeFrom);
+
+                Line line = new Line();
+                line.Stroke = Brushes.Black;
+                line.X1 = fromPoint.X;
+                line.Y1 = fromPoint.Y;
+                line.X2 = toPoint.X;
+                line.Y2 = toPoint.Y;
+                line.StrokeThickness = 1;
+                circuitCanvas.Children.Add(line);
+
+                Connection connection = new Connection(nodeFrom, nodeTo);
+                instance().connections_.Add(connection, line);
+
+                MessageBox.Show("Added connection from " + fromNode + " and " + toNode, "Add connection");
             }
         }
 
-        public static void removeConnection(String outputNode, String inputNode)
+        public static void removeConnection(string fromNode, string toNode, Canvas circuitCanvas)
         {
-            if (instance().hasNode(outputNode) && instance().hasNode(inputNode))
+            if (instance().hasNode(fromNode) && instance().hasNode(toNode))
             {
                 Dictionary<String, Node> nodes = instance().nodes_;
-                if (!nodes[inputNode].removeInput(nodes[outputNode]))
+                if (!nodes[toNode].removeInput(nodes[fromNode]))
                 {
-                    MessageBox.Show("No connection between " + outputNode + " and " + inputNode, "Remove connection");
+                    MessageBox.Show("No connection from " + fromNode + " and " + toNode, "Remove connection");
                     return;
                 }
-                nodes[outputNode].removeOutput(nodes[inputNode]);
-                MessageBox.Show("Removed connection between " + outputNode + " and " + inputNode, "Remove connection");
+                nodes[fromNode].removeOutput(nodes[toNode]);
+
+                Dictionary<Connection, Line> connections = instance().connections_;
+                foreach (var item in connections)
+                {
+                    Connection connection = item.Key;
+                    if (connection.getFrom() == nodes[fromNode])
+                    {
+                        if (connection.getTo() == nodes[toNode])
+                        {
+                            circuitCanvas.Children.Remove(connections[connection]);
+                            connections.Remove(connection);
+                            break;
+                        }
+                    }
+                }
+
+                MessageBox.Show("Removed connection from " + fromNode + " and " + toNode, "Remove connection");
+            }
+        }
+
+        public static void updateConnections(Image image, Canvas circuitCanvas)
+        {
+            Dictionary<String, Image> images = instance().images_;
+            String name = null;
+            foreach (var item in images)
+            {
+                if (Equals(item.Value, image))
+                {
+                    name = item.Key;
+                    break;
+                }
+            }
+
+            Node node = instance().nodes_[name];
+            Dictionary<Connection, Line> connectionLines = instance().connections_;
+            List<Connection> connections = new List<Connection>();
+            foreach (var item in connectionLines)
+            {
+                connections.Add(item.Key);
+            }
+            connections = node.filterConnections(connections);
+
+            foreach (var connection in connections)
+            {
+                Line line = connectionLines[connection];
+                Point start = new Point(line.X1, line.Y1);
+                Point end = new Point(line.X2, line.Y2);
+                if (connection.getFrom() == node)
+                {
+                    Point point = image.TranslatePoint(new Point(0, 0), circuitCanvas);
+                    start = node.getOutputPoint(point, image);
+                    line.X1 = start.X;
+                    line.Y1 = start.Y;
+                }
+                if (connection.getTo() == node)
+                {
+                    Point point = image.TranslatePoint(new Point(0, 0), circuitCanvas);
+                    end = node.getInputPoint(point, image, connection.getFrom());
+                    line.X2 = end.X;
+                    line.Y2 = end.Y;
+                }
             }
         }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Shapes;
 
 namespace VSRapp
 {
@@ -8,6 +10,7 @@ namespace VSRapp
     {
         protected List<Node> inputNodes_;
         protected List<Node> outputNodes_;
+        protected Dictionary<Node, Line> outputLines_;
         protected String name_;
 
         protected Node()
@@ -31,7 +34,7 @@ namespace VSRapp
             return name_;
         }
 
-        public virtual Boolean addInput(Node node)
+        public virtual bool addInput(Node node)
         {
             if (inputNodes_.Count == 2)
             {
@@ -70,6 +73,42 @@ namespace VSRapp
             foreach (var node in outputNodes_)
                 node.removeInput(this);
             outputNodes_.Clear();
+        }
+
+        public Point getOutputPoint(Point relativePoint, Image image)
+        {
+            relativePoint.X += image.Width;
+            relativePoint.Y += image.Height / 2;
+            return relativePoint;
+        }
+
+        public virtual Point getInputPoint(Point relativePoint, Image image, Node fromNode)
+        {
+            int index = 0;
+            foreach (var node in inputNodes_)
+            {
+                if (node == fromNode)
+                {
+                    if (index == 0)
+                        relativePoint.Y += image.Height / 4;
+                    if (index == 1)
+                        relativePoint.Y += image.Height - image.Height / 4;
+                    return relativePoint;
+                }
+                index++;
+            }
+            return relativePoint;
+        }
+
+        public List<Connection> filterConnections(List<Connection> allConnections)
+        {
+            List<Connection> connections = new List<Connection>();
+            foreach (var connection in allConnections)
+            {
+                if (connection.getTo() == this || connection.getFrom() == this)
+                    connections.Add(connection);
+            }
+            return connections;
         }
 
         public abstract String getKey();

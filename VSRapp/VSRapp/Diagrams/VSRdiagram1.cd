@@ -3,85 +3,85 @@
   <Class Name="VSRapp.And" Collapsed="true">
     <Position X="6.5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAgAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\And.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VSRapp.Or" Collapsed="true">
     <Position X="6.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAgAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\Or.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VSRapp.InputHigh" Collapsed="true">
     <Position X="3" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAgAAAAgAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\InputHigh.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VSRapp.InputLow" Collapsed="true">
     <Position X="3" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAgAAAAgAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\InputLow.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VSRapp.Probe" Collapsed="true">
     <Position X="4.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABQAAgAAAAgAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\Probe.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VSRapp.Not" Collapsed="true">
     <Position X="4.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAgAAAAgAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\Not.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VSRapp.Nand" Collapsed="true">
     <Position X="8.25" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAgAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\Nand.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VSRapp.Nor" Collapsed="true">
     <Position X="10" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAgAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\Nor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VSRapp.Xor" Collapsed="true">
     <Position X="8.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAgAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\Xor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VSRapp.Xnor" Collapsed="true">
     <Position X="10" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAgAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\Xnor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VSRapp.Node" Collapsed="true">
     <Position X="6.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAABAAAAAABA=</HashCode>
+      <HashCode>AAAEAAAABAAABAAABQAAghAAAgABACBAAABEAAAAKBA=</HashCode>
       <FileName>Circuit\Node.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="VSRapp.FactoryMethod&lt;TKey, TObject&gt;">
+  <Class Name="VSRapp.FactoryMethod&lt;TKey, TObject&gt;" Collapsed="true">
     <Position X="3.5" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAAAAAAAAAAIAEQAAgAAABIAAAAAABAAgAAAAA=</HashCode>
+      <HashCode>AAgAAAAAAAAAAAAAAAEQAAgAAABIAEAAAABAAgAAAAA=</HashCode>
       <FileName>Circuit\FactoryMethod.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -103,7 +103,7 @@
   <Class Name="VSRapp.Circuit" Collapsed="true">
     <Position X="6.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAgAAAAAIAA=</HashCode>
+      <HashCode>AAAAABQAACAAAAAIAAAAAAABAAJAAAAAAAgAogAIIQA=</HashCode>
       <FileName>Circuit\Circuit.cs</FileName>
     </TypeIdentifier>
   </Class>

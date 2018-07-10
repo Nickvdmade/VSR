@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace VSRapp
 {
@@ -15,7 +16,7 @@ namespace VSRapp
             return false;
         }
 
-        public override Boolean addInput(Node node)
+        public override bool addInput(Node node)
         {
             if (inputNodes_.Count == 1)
             {
@@ -24,6 +25,12 @@ namespace VSRapp
             }
             inputNodes_.Add(node);
             return true;
+        }
+
+        public override Point getInputPoint(Point relativePoint, Image image, Node fromNode)
+        {
+            relativePoint.Y += image.Height / 2;
+            return relativePoint;
         }
 
         public override string getKey()

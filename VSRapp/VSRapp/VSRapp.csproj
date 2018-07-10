@@ -55,6 +55,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Circuit\Circuit.cs" />
+    <Compile Include="Circuit\Connection.cs" />
     <Compile Include="Circuit\Node.cs" />
     <Compile Include="Circuit\FactoryMethod.cs" />
     <Compile Include="Nodes\Xnor.cs" />
