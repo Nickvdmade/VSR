@@ -65,6 +65,9 @@ namespace VSRapp
                 outputNodes_.Remove(node);
         }
 
+        /// <summary>
+        /// Remove all connections to and from node
+        /// </summary>
         public void removeConnections()
         {
             foreach (var node in inputNodes_)
@@ -75,6 +78,9 @@ namespace VSRapp
             outputNodes_.Clear();
         }
 
+        /// <summary>
+        /// Get relative output point of node
+        /// </summary>
         public Point getOutputPoint(Point relativePoint, Image image)
         {
             relativePoint.X += image.Width;
@@ -82,6 +88,9 @@ namespace VSRapp
             return relativePoint;
         }
 
+        /// <summary>
+        /// Get relative input point of node
+        /// </summary>
         public virtual Point getInputPoint(Point relativePoint, Image image, Node fromNode)
         {
             int index = 0;
@@ -100,6 +109,9 @@ namespace VSRapp
             return relativePoint;
         }
 
+        /// <summary>
+        /// Get all connections to and from node
+        /// </summary>
         public List<Connection> filterConnections(List<Connection> allConnections)
         {
             List<Connection> connections = new List<Connection>();

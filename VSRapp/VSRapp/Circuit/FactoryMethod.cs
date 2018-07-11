@@ -8,8 +8,8 @@ namespace VSRapp
         where TObject : ICloneable, IGetKey<TKey>
     {
 
-        private static Dictionary<TKey, TObject> objectMap_;
-        static private FactoryMethod<TKey, TObject> instance_ = null;
+        private Dictionary<TKey, TObject> objectMap_;
+        static private FactoryMethod<TKey, TObject> instance_;
 
         public static TObject create(TKey key)
         {
@@ -18,8 +18,7 @@ namespace VSRapp
 
         public static Dictionary<TKey, TObject> getList()
         {
-            instance();
-            return objectMap_;
+            return instance().objectMap_;
         }
 
         private FactoryMethod()
