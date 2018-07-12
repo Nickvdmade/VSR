@@ -31,14 +31,14 @@
   <Class Name="VSRapp.Probe" Collapsed="true">
     <Position X="4.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABQAAgAAAAgAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABQAAgBAAAgAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\Probe.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VSRapp.Not" Collapsed="true">
     <Position X="4.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAgAAAAgAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAgBAAAgAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Nodes\Not.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -73,7 +73,7 @@
   <Class Name="VSRapp.Node" Collapsed="true">
     <Position X="6.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAABAAABAAABQAAghAAAgABACBAAABEAAAAKBA=</HashCode>
+      <HashCode>CAAEAAAABAAABAAABQAAghAAAgABACBAAABEAABBKBA=</HashCode>
       <FileName>Circuit\Node.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -85,25 +85,26 @@
       <FileName>Circuit\FactoryMethod.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VSRapp.SaveToText" Collapsed="true">
+  <Class Name="VSRapp.TextFile" Collapsed="true">
     <Position X="0.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
-      <FileName>Saving\SaveToText.cs</FileName>
+      <HashCode>AAAAAAAAAACAAAAABCAAAAAQAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>File\TextFile.cs</FileName>
+      <NewMemberFileName>File\textFile.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VSRapp.Save" Collapsed="true">
+  <Class Name="VSRapp.FileType" Collapsed="true">
     <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAABAAAAAABA=</HashCode>
-      <FileName>Saving\Save.cs</FileName>
+      <HashCode>AAAAAAAAAACAAAAABCAAAAAQAAAAAAAAAABAAAAAABA=</HashCode>
+      <FileName>File\FileType.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VSRapp.Circuit" Collapsed="true">
     <Position X="6.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAABQAACAAAAAIAAAAAAABAAJAAAAAAAgAogAIIQA=</HashCode>
+      <HashCode>AAAAABQAACAAAAAIAAAAAAABAABgAAAAIAgAogAIIQA=</HashCode>
       <FileName>Circuit\Circuit.cs</FileName>
     </TypeIdentifier>
   </Class>

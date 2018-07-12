@@ -108,7 +108,7 @@ namespace VSRapp
         /// <summary>
         /// Add connection between two nodes
         /// </summary>
-        public static void addConnection(string fromNode, string toNode)
+        public static void addConnection(String fromNode, String toNode)
         {
             Circuit instance = Circuit.instance();
 
@@ -147,7 +147,7 @@ namespace VSRapp
         /// <summary>
         /// Remove connection between two nodes
         /// </summary>
-        public static void removeConnection(string fromNode, string toNode)
+        public static void removeConnection(String fromNode, String toNode)
         {
             Circuit instance = Circuit.instance();
             

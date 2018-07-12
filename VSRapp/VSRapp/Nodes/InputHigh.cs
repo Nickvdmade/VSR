@@ -18,7 +18,7 @@ namespace VSRapp
 
         public override string getKey()
         {
-            return "INPUTHIGH";
+            return "INPUT_HIGH";
         }
 
         public override Uri getUri()

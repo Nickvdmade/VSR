@@ -60,8 +60,8 @@
     <Compile Include="Circuit\FactoryMethod.cs" />
     <Compile Include="Nodes\Xnor.cs" />
     <Compile Include="Nodes\Xor.cs" />
-    <Compile Include="Saving\Save.cs" />
-    <Compile Include="Saving\SaveToText.cs" />
+    <Compile Include="File\FileType.cs" />
+    <Compile Include="File\TextFile.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

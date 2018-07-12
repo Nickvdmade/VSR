@@ -12,6 +12,7 @@ namespace VSRapp
         protected List<Node> outputNodes_;
         protected Dictionary<Node, Line> outputLines_;
         protected String name_;
+        protected int count_ = 0;
 
         protected Node()
         {
@@ -63,6 +64,11 @@ namespace VSRapp
         {
             if (outputNodes_.Contains(node))
                 outputNodes_.Remove(node);
+        }
+
+        public List<Node> getOutputs()
+        {
+            return outputNodes_;
         }
 
         /// <summary>
@@ -121,6 +127,14 @@ namespace VSRapp
                     connections.Add(connection);
             }
             return connections;
+        }
+
+        public Node useForSave()
+        {
+            count_++;
+            if (count_ == inputNodes_.Count)
+                return this;
+            return null;
         }
 
         public abstract String getKey();

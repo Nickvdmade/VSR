@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace VSRapp
 {
@@ -340,6 +342,60 @@ namespace VSRapp
             String fromNode = FromNode.Text;
             String toNode = ToNode.Text;
             Circuit.removeConnection(fromNode, toNode);
+        }
+
+        #endregion
+
+        #region Toolbar buttons
+
+        private void saveCircuit(object sender, RoutedEventArgs e)
+        {
+            Dictionary<String, FileType> fileTypes = FactoryMethod<String, FileType>.getList();
+            String filter = "";
+
+            foreach (var type in fileTypes)
+            {
+                filter += type.Value.getFilter();
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = filter.Substring(0, filter.LastIndexOf('|'));
+            saveFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                String fileName = saveFileDialog.FileName;
+                int index = fileName.LastIndexOf('.') + 1;
+                String extension = fileName.Substring(index, fileName.Length - index);
+
+                fileTypes[extension].save(fileName, Circuit.getList());
+            }
+        }
+
+        private void openCircuit(object sender, RoutedEventArgs e)
+        {
+            Dictionary<String, FileType> fileTypes = FactoryMethod<String, FileType>.getList();
+            String filter = "";
+
+            foreach (var type in fileTypes)
+            {
+                filter += type.Value.getFilter();
+            }
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = filter.Substring(0, filter.LastIndexOf('|'));
+            openFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                String fileName = openFileDialog.FileName;
+                int index = fileName.LastIndexOf('.') + 1;
+                String extension = fileName.Substring(index, fileName.Length - index);
+
+                fileTypes[extension].open(fileName);
+            }
+
+            updateConnectionList();
         }
 
         #endregion

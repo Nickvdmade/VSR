@@ -8,12 +8,13 @@
         Title="Logical circuit creator" Width="1280" Height="960">
     <Grid>
         <DockPanel LastChildFill="True">
-            <ToolBarTray DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                <ToolBar>
-                    <Button x:Name="New" Content="New"/>
-                    <Button x:Name="Save" Content="Save"/>
-                </ToolBar>
-            </ToolBarTray>
+            <DockPanel DockPanel.Dock="Top">
+                <Button x:Name="New" Content="New"/>
+                <Button x:Name="Save" Content="Save" Click="saveCircuit"/>
+                <Button x:Name="Open" Content="Open" Click="openCircuit"/>
+                <Button x:Name="Help" Content="Help" DockPanel.Dock="Right"/>
+                <Rectangle/>
+            </DockPanel>
             <Border BorderThickness="1" BorderBrush="#FFABADB3">
                 <DockPanel DockPanel.Dock="Left" LastChildFill="True">
                     <TextBox x:Name="NodeName" DockPanel.Dock="Top" Text="Node name" Height="25" TextAlignment="Center" FontSize="15"/>
