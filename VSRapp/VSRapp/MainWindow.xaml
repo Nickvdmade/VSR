@@ -9,8 +9,8 @@
     <Grid>
         <DockPanel LastChildFill="True">
             <DockPanel DockPanel.Dock="Top">
-                <Button x:Name="New" Content="New"/>
-                <Button x:Name="Save" Content="Save" Click="saveCircuit"/>
+                <Button x:Name="New" Content="New" Click="newCircuit"/>
+                <Button x:Name="Save" Content="Save" Click="saveCircuitButton"/>
                 <Button x:Name="Open" Content="Open" Click="openCircuit"/>
                 <Button x:Name="Help" Content="Help" DockPanel.Dock="Right"/>
                 <Rectangle/>

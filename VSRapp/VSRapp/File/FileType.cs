@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace VSRapp
 {
@@ -15,8 +16,17 @@ namespace VSRapp
         }
 
         public abstract String getFilter();
-        public abstract void save(String fileName, Dictionary<String, Node> circuit);
-        public abstract void open(String fileName);
+
+        public virtual void save(String fileName, Dictionary<String, Node> circuit)
+        {
+            MessageBox.Show("Can't save to this file type", "Save file");
+        }
+
+        public virtual void open(String fileName)
+        {
+            MessageBox.Show("Can't open this file type", "Open file");
+        }
+
         public abstract String getKey();
         public abstract object Clone();
     }

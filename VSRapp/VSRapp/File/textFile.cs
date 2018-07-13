@@ -29,10 +29,10 @@ namespace VSRapp
             while (queue.Count > 0)
             {
                 Node node = queue.Dequeue();
+                types += node.getName() + ":\t" + node.getKey() + ";\r\n";
+
                 if (node.getKey() != "PROBE")
                 {
-                    types += node.getName() + ":\t" + node.getKey() + ";\r\n";
-
                     List<Node> outputs = node.getOutputs();
                     String connection = node.getName() + ":\t";
                     foreach (var output in outputs)

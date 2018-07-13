@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,15 +16,22 @@ namespace VSRapp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static Point startingPoint_, endPoint_;
-        private static Boolean itemSelected_, horizontal_, vertical_;
+        private static Point startingPoint_;
+        private static Point endPoint_;
+        private static Boolean itemSelected_;
+        private static Boolean horizontal_;
+        private static Boolean vertical_;
         private static Image image_;
         private static Canvas circuitCanvas_;
+        private Boolean circuitSaved_ = true;
+
         private static double movement = 5;
 
         public MainWindow()
         {
             InitializeComponent();
+
+            Closing += closeWindow;
 
             circuitCanvas_ = CircuitCanvas;
 
@@ -67,6 +75,14 @@ namespace VSRapp
         public static void removeElement(UIElement toRemove)
         {
             circuitCanvas_.Children.Remove(toRemove);
+        }
+
+        /// <summary>
+        /// Clear canvas for new circuit
+        /// </summary>
+        public static void clearCanvas()
+        {
+            circuitCanvas_.Children.Clear();
         }
 
         #endregion
@@ -170,7 +186,7 @@ namespace VSRapp
                 }
 
                 // Update connection lines and text position
-                Circuit.updateConnections(image_, circuitCanvas_);
+                Circuit.updateConnections(image_);
                 updateText();
             }
         }
@@ -275,6 +291,7 @@ namespace VSRapp
             updateConnectionList();
             
             NodeList.UnselectAll();
+            circuitSaved_ = false;
         }
 
         /// <summary>
@@ -285,6 +302,7 @@ namespace VSRapp
             String name = NodeName.Text;
             Circuit.removeNode(name);
             updateConnectionList();
+            circuitSaved_ = false;
         }
 
         #endregion
@@ -332,6 +350,7 @@ namespace VSRapp
             String fromNode = FromNode.Text;
             String toNode = ToNode.Text;
             Circuit.addConnection(fromNode, toNode);
+            circuitSaved_ = false;
         }
 
         /// <summary>
@@ -342,13 +361,36 @@ namespace VSRapp
             String fromNode = FromNode.Text;
             String toNode = ToNode.Text;
             Circuit.removeConnection(fromNode, toNode);
+            circuitSaved_ = false;
         }
 
         #endregion
 
         #region Toolbar buttons
 
-        private void saveCircuit(object sender, RoutedEventArgs e)
+        private void newCircuit(object sender, RoutedEventArgs e)
+        {
+            if (!circuitSaved_)
+            {
+                MessageBoxResult result = MessageBox.Show("Would you like to save the current circuit?", "New Circuit",
+                    MessageBoxButton.YesNoCancel);
+                if (result == MessageBoxResult.Yes)
+                {
+                    saveCircuit();
+                }
+                if (result == MessageBoxResult.Cancel)
+                    return;
+            }
+            Circuit.clearCircuit();
+            circuitSaved_ = false;
+        }
+
+        private void saveCircuitButton(object sender, RoutedEventArgs routedEventArgs)
+        {
+            saveCircuit();
+        }
+
+        private void saveCircuit()
         {
             Dictionary<String, FileType> fileTypes = FactoryMethod<String, FileType>.getList();
             String filter = "";
@@ -369,6 +411,7 @@ namespace VSRapp
                 String extension = fileName.Substring(index, fileName.Length - index);
 
                 fileTypes[extension].save(fileName, Circuit.getList());
+                circuitSaved_ = true;
             }
         }
 
@@ -399,5 +442,18 @@ namespace VSRapp
         }
 
         #endregion
+
+        public void closeWindow(object sender, CancelEventArgs e)
+        {
+            if (!circuitSaved_)
+            {
+                MessageBoxResult result = MessageBox.Show("Would you like to save the current circuit?", "New Circuit",
+                    MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    saveCircuit();
+                }
+            }
+        }
     }
 }

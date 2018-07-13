@@ -19,6 +19,8 @@ namespace VSRapp
         private Dictionary<Connection, Line> connections_ = new Dictionary<Connection, Line>();
         private int counter_ = 1;
 
+        #region Node functions
+
         /// <summary>
         /// Add node to circuit
         /// </summary>
@@ -71,39 +73,23 @@ namespace VSRapp
                 TextBlock text = instance.texts_[name];
                 MainWindow.removeElement(text);
                 instance.texts_.Remove(name);
-                MessageBox.Show(name + " has been removed", "Remove node");
             }
         }
 
         /// <summary>
-        /// Get text that is linked to image
+        /// Check if circuit has node
         /// </summary>
-        public static TextBlock getRelativeText(Image image)
+        private Boolean hasNode(String name)
         {
-            Circuit instance = Circuit.instance();
-            foreach (var item in instance.images_)
-            {
-                if (Equals(item.Value, image))
-                    return instance.texts_[item.Key];
-            }
-            return null;
+            if (nodes_.ContainsKey(name))
+                return true;
+            MessageBox.Show("No node with the name: " + name, "Unknown node name");
+            return false;
         }
 
-        /// <summary>
-        /// Get counter for standard name
-        /// </summary>
-        public static int getAmount()
-        {
-            return instance().counter_;
-        }
+        #endregion
 
-        /// <summary>
-        /// Get list of nodes in circuit
-        /// </summary>
-        public static Dictionary<String, Node> getList()
-        {
-            return instance().nodes_;
-        }
+        #region Connection functions
 
         /// <summary>
         /// Add connection between two nodes
@@ -139,8 +125,6 @@ namespace VSRapp
 
                 Connection connection = new Connection(nodeFrom, nodeTo);
                 instance.connections_.Add(connection, line);
-
-                MessageBox.Show("Added connection from " + fromNode + " and " + toNode, "Add connection");
             }
         }
 
@@ -150,7 +134,7 @@ namespace VSRapp
         public static void removeConnection(String fromNode, String toNode)
         {
             Circuit instance = Circuit.instance();
-            
+
             // Check if circuit has both nodes
             if (instance.hasNode(fromNode) && instance.hasNode(toNode))
             {
@@ -178,15 +162,13 @@ namespace VSRapp
                         }
                     }
                 }
-
-                MessageBox.Show("Removed connection from " + fromNode + " and " + toNode, "Remove connection");
             }
         }
 
         /// <summary>
         /// Update the position of the connection line
         /// </summary>
-        public static void updateConnections(Image image, Canvas circuitCanvas)
+        public static void updateConnections(Image image)
         {
             // Search for the correct name
             Dictionary<String, Image> images = instance().images_;
@@ -221,6 +203,49 @@ namespace VSRapp
             }
         }
 
+        #endregion
+
+        public static void clearCircuit()
+        {
+            Circuit instance = Circuit.instance();
+            instance.nodes_.Clear();
+            instance.images_.Clear();
+            instance.texts_.Clear();
+            instance.connections_.Clear();
+            instance.counter_ = 1;
+            MainWindow.clearCanvas();
+        }
+
+        /// <summary>
+        /// Get text that is linked to image
+        /// </summary>
+        public static TextBlock getRelativeText(Image image)
+        {
+            Circuit instance = Circuit.instance();
+            foreach (var item in instance.images_)
+            {
+                if (Equals(item.Value, image))
+                    return instance.texts_[item.Key];
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get counter for standard name
+        /// </summary>
+        public static int getAmount()
+        {
+            return instance().counter_;
+        }
+
+        /// <summary>
+        /// Get list of nodes in circuit
+        /// </summary>
+        public static Dictionary<String, Node> getList()
+        {
+            return instance().nodes_;
+        }
+
         private Circuit()
         {
             nodes_ = new Dictionary<String, Node>();
@@ -236,17 +261,6 @@ namespace VSRapp
                 instance_ = new Circuit();
             }
             return instance_;
-        }
-
-        /// <summary>
-        /// Check if circuit has node
-        /// </summary>
-        private Boolean hasNode(String name)
-        {
-            if (nodes_.ContainsKey(name))
-                return true;
-            MessageBox.Show("No node with the name: " + name, "Unknown node name");
-            return false;
         }
 
     }
