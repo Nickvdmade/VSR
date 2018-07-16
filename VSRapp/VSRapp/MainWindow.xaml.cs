@@ -97,6 +97,7 @@ namespace VSRapp
             if (!vertical_)
             {
                 startingPoint_ = Mouse.GetPosition(circuitCanvas_);
+                Mouse.OverrideCursor = Cursors.ScrollWE;
                 itemSelected_ = true;
                 horizontal_ = true;
                 image_ = sender as Image;
@@ -111,6 +112,7 @@ namespace VSRapp
             // Only when horizontal_ is true
             if (horizontal_)
             {
+                Mouse.OverrideCursor = Cursors.Arrow;
                 itemSelected_ = false;
                 horizontal_ = false;
                 image_ = null;
@@ -126,6 +128,7 @@ namespace VSRapp
             if (!horizontal_)
             {
                 startingPoint_ = Mouse.GetPosition(circuitCanvas_);
+                Mouse.OverrideCursor = Cursors.ScrollNS;
                 itemSelected_ = true;
                 vertical_ = true;
                 image_ = sender as Image;
@@ -140,6 +143,7 @@ namespace VSRapp
             // Only if vertical_ is true
             if (vertical_)
             {
+                Mouse.OverrideCursor = Cursors.Arrow;
                 itemSelected_ = false;
                 vertical_ = false;
                 image_ = null;
@@ -166,7 +170,16 @@ namespace VSRapp
                         else
                             x = -movement;
                         Point location = image_.TranslatePoint(new Point(0, 0), circuitCanvas_);
-                        Canvas.SetLeft(image_, location.X + x);
+                        double newX = location.X + x;
+                        if (newX < 0)
+                            newX = 0;
+                        double width = ((Panel) Application.Current.MainWindow.Content).ActualWidth;
+                        Point canvasLocation =
+                            circuitCanvas_.TranslatePoint(new Point(0, 0), Application.Current.MainWindow);
+                        double canvasWidth = width - canvasLocation.X;
+                        if (newX > canvasWidth - image_.Width)
+                            newX = canvasWidth - image_.Width - canvasWidth % movement;
+                        Canvas.SetLeft(image_, newX);
                         startingPoint_ = endPoint_;
                     }
                 }
@@ -180,7 +193,16 @@ namespace VSRapp
                         else
                             y = -movement;
                         Point location = image_.TranslatePoint(new Point(0, 0), circuitCanvas_);
-                        Canvas.SetTop(image_, location.Y + y);
+                        double newY = location.Y + y;
+                        if (newY < 0)
+                            newY = 0;
+                        double height = ((Panel)Application.Current.MainWindow.Content).ActualHeight;
+                        Point canvasLocation =
+                            circuitCanvas_.TranslatePoint(new Point(0, 0), Application.Current.MainWindow);
+                        double canvasHeight = height - canvasLocation.Y;
+                        if (newY > canvasHeight - image_.Height)
+                            newY = canvasHeight - image_.Height - canvasHeight % movement;
+                        Canvas.SetTop(image_, newY);
                         startingPoint_ = endPoint_;
                     }
                 }
