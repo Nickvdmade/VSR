@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using VSRapp.Help;
 
 namespace VSRapp
 {
@@ -16,14 +17,11 @@ namespace VSRapp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static Point startingPoint_;
-        private static Point endPoint_;
-        private static Boolean itemSelected_;
-        private static Boolean horizontal_;
-        private static Boolean vertical_;
+        private static Point startingPoint_, endPoint_;
+        private static Boolean itemSelected_, horizontal_, vertical_, circuitSaved_ = true;
         private static Image image_;
         private static Canvas circuitCanvas_;
-        private Boolean circuitSaved_ = true;
+        private static HelpWindow helpInstance_;
 
         private static double movement = 5;
 
@@ -476,6 +474,21 @@ namespace VSRapp
                     saveCircuit();
                 }
             }
+            helpInstance_.Close();
+        }
+
+        private void openHelp(object sender, RoutedEventArgs e)
+        {
+            if (helpInstance_ == null)
+            {
+                helpInstance_ = new HelpWindow();
+                helpInstance_.Show();
+            }
+        }
+
+        public static void closeHelp()
+        {
+            helpInstance_ = null;
         }
     }
 }

@@ -58,10 +58,17 @@
     <Compile Include="Circuit\Connection.cs" />
     <Compile Include="Circuit\Node.cs" />
     <Compile Include="Circuit\FactoryMethod.cs" />
+    <Compile Include="Help\HelpWindow.xaml.cs">
+      <DependentUpon>HelpWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Nodes\Xnor.cs" />
     <Compile Include="Nodes\Xor.cs" />
     <Compile Include="File\FileType.cs" />
     <Compile Include="File\TextFile.cs" />
+    <Page Include="Help\HelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
