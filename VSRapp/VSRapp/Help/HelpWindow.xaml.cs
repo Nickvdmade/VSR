@@ -33,34 +33,49 @@ namespace VSRapp.Help
 
             HelpText.Inlines.Add(new Bold(new Run("Node operations\n\n")));
             HelpText.Inlines.Add(new Italic(new Underline(new Run("Add new node\n"))));
-            HelpText.Inlines.Add("In order to add a new node to the circuit, select a gate from the list of possible gates." +
-                                 "After selecting a type of gate, give a name to the node. There will be a standard name given if no custom name was given." +
-                                 "After a name has been given to the node, press the ");
+            HelpText.Inlines.Add(
+                "In order to add a new node to the circuit, select a gate from the list of possible gates.\n" +
+                "After selecting a type of gate, give a name to the node.\n" +
+                "There will be a standard name given if no custom name was given.\n" +
+                "After a name has been given to the node, press the ");
             HelpText.Inlines.Add(new Italic(new Run("Add node")));
             HelpText.Inlines.Add(" button to add the node to the circuit.\n\n");
             HelpText.Inlines.Add(new Italic(new Underline(new Run("Remove existing node\n"))));
             HelpText.Inlines.Add(
-                "In order to remove an existing nodes from the circuit, type the name of the node in the field." +
+                "In order to remove an existing nodes from the circuit, type the name of the node in the field.\n" +
                 "After that, press the ");
             HelpText.Inlines.Add(new Italic(new Run("Remove node")));
-            HelpText.Inlines.Add(" button to remove the node from the circuit." +
+            HelpText.Inlines.Add(" button to remove the node from the circuit.\n" +
                                  "This will also remove the connections from and to the node.\n\n");
             
             HelpText.Inlines.Add(new Bold(new Run("Connection operations\n\n")));
             HelpText.Inlines.Add(new Italic(new Underline(new Run("Adding connections\n"))));
             HelpText.Inlines.Add(
-                "In order to add a connection to the circuit, select an output and an input node from the list of nodes." +
+                "In order to add a connection to the circuit, select an output and an input node from the list of nodes.\n" +
                 "After the selection has been made, press the ");
             HelpText.Inlines.Add(new Italic(new Run("Add connection")));
             HelpText.Inlines.Add(" button to add the connection between the two nodes.\n\n");
             HelpText.Inlines.Add(new Italic(new Underline(new Run("Removing connections\n"))));
             HelpText.Inlines.Add(
-                "In order to remove a connection from the circuit, select an output and an input node from the list of nodes." +
+                "In order to remove a connection from the circuit, select an output and an input node from the list of nodes.\n" +
                 "After the selection has been made, press the ");
             HelpText.Inlines.Add(new Italic(new Run("Remove connection")));
             HelpText.Inlines.Add(" button to remove the connection between the two nodes.\n\n");
 
-            HelpText.Inlines.Add(new Bold(new Run("Canvas operations")));
+            HelpText.Inlines.Add(new Bold(new Run("Canvas operations\n")));
+            HelpText.Inlines.Add(
+                "When a node is added to the circuit, an image of the gate will be added to the canvas.\n" +
+                "The name of the node is shown underneath the image.\n" +
+                "When a connection is added to the circuit, a line will be drawn between the selected nodes.\n\n");
+            HelpText.Inlines.Add(new Italic(new Underline(new Run("Moving images horizontally\n"))));
+            HelpText.Inlines.Add(
+                "In order to move a node horizontally, use the left mouse button\n\n");
+            HelpText.Inlines.Add(new Italic(new Underline(new Run("Moving images vertically\n"))));
+            HelpText.Inlines.Add(
+                "In order to move a node vertically, use the right mouse button\n\n");
+            HelpText.Inlines.Add(
+                "While keeping the mouse button down and the mouse positioned on the node, you can move the node.\n" +
+                "The connections will move with the node.\n\n");
         }
 
         public void closeWindow(object sender, CancelEventArgs e)

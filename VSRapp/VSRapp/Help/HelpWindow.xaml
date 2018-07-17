@@ -7,9 +7,8 @@
         mc:Ignorable="d"
         Title="HelpWindow" Height="960" Width="450">
     <Grid>
-        <DockPanel LastChildFill="True">
-            <ListBox x:Name="HelpList"  DockPanel.Dock="Top"/>
-            <TextBlock x:Name="HelpText"/>
-        </DockPanel>
+        <ScrollViewer>
+            <TextBlock x:Name="HelpText" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        </ScrollViewer>
     </Grid>
 </Window>
