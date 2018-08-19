@@ -463,6 +463,28 @@ namespace VSRapp
 
         #endregion
 
+        #region Help functions
+
+        private void openHelp(object sender, RoutedEventArgs e)
+        {
+            if (helpInstance_ == null)
+            {
+                helpInstance_ = new HelpWindow();
+                helpInstance_.Show();
+            }
+        }
+
+        private void closeHelp()
+        {
+            if (helpInstance_ != null)
+            {
+                helpInstance_.Close();
+                helpInstance_ = null;
+            }
+        }
+
+        #endregion
+
         public void closeWindow(object sender, CancelEventArgs e)
         {
             if (!circuitSaved_)
@@ -474,21 +496,7 @@ namespace VSRapp
                     saveCircuit();
                 }
             }
-            helpInstance_.Close();
-        }
-
-        private void openHelp(object sender, RoutedEventArgs e)
-        {
-            if (helpInstance_ == null)
-            {
-                helpInstance_ = new HelpWindow();
-                helpInstance_.Show();
-            }
-        }
-
-        public static void closeHelp()
-        {
-            helpInstance_ = null;
+            closeHelp();
         }
     }
 }

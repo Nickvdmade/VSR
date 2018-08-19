@@ -77,10 +77,5 @@ namespace VSRapp.Help
                 "While keeping the mouse button down and the mouse positioned on the node, you can move the node.\n" +
                 "The connections will move with the node.\n\n");
         }
-
-        public void closeWindow(object sender, CancelEventArgs e)
-        {
-            MainWindow.closeHelp();
-        }
     }
 }

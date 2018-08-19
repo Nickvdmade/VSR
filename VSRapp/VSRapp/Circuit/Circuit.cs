@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -205,16 +203,7 @@ namespace VSRapp
 
         #endregion
 
-        public static void clearCircuit()
-        {
-            Circuit instance = Circuit.instance();
-            instance.nodes_.Clear();
-            instance.images_.Clear();
-            instance.texts_.Clear();
-            instance.connections_.Clear();
-            instance.counter_ = 1;
-            MainWindow.clearCanvas();
-        }
+        #region Get functions
 
         /// <summary>
         /// Get text that is linked to image
@@ -244,6 +233,19 @@ namespace VSRapp
         public static Dictionary<String, Node> getList()
         {
             return instance().nodes_;
+        }
+
+        #endregion
+
+        public static void clearCircuit()
+        {
+            Circuit instance = Circuit.instance();
+            instance.nodes_.Clear();
+            instance.images_.Clear();
+            instance.texts_.Clear();
+            instance.connections_.Clear();
+            instance.counter_ = 1;
+            MainWindow.clearCanvas();
         }
 
         private Circuit()
